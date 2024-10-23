@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name        WME Example Script
+// @name        TODO: WME Example Script
 // @namespace   wme-sdk-scripts
 // @version     1.0.0
-// @description Add a useful description here, what does your script do?
+// @description TODO: Add a useful description here, what does your script do?
 // @updateURL	https://TODO/myscript.user.js
 // @downloadURL https://TODO/myscript.user.js
-// @author      bedo2991 @ Waze
+// @author      TODO @ Waze
 // @match       https://www.waze.com/editor*
 // @match       https://beta.waze.com/editor*
 // @match       https://www.waze.com/*/editor*

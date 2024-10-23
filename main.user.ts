@@ -5,21 +5,21 @@ import { WmeSDK } from "wme-sdk-typings";
 window.SDK_INITIALIZED.then(initScript);
 
 function initScript() {
+    // initialize the sdk, these should remain here at the top of the script
     if (!window.getWmeSdk) {
         // This block is required for type checking, but it is guaranteed that the function exists.
         throw new Error("SDK not available");
     }
-
-    // initialize the sdk
     const wmeSDK: WmeSDK = window.getWmeSdk(
         {
             scriptId: "example-ts-id", // TODO: replace with your script id and script name
-            scriptName: "Typescript example"
+            scriptName: "Typescript example" // TODO
         }
     )
 
-    console.log(`SDK v. ${wmeSDK.getSDKVersion()} on ${wmeSDK.getWMEVersion()}/${wmeSDK.getWMEBackEndVersion()}`)
+    console.debug(`SDK v. ${wmeSDK.getSDKVersion()} on ${wmeSDK.getWMEVersion()} initialized`)
 
+    /* Example functions, define your functions in this section */
     function setKeyboardShortcuts() {
         wmeSDK.Shortcuts.createShortcut({
             callback: () => {
@@ -57,16 +57,16 @@ function initScript() {
     }
 
     function addEventListeners() {
-
+        // ...
     }
 
     async function addScriptTab() {
         const { tabLabel, tabPane } = await wmeSDK.Sidebar.registerScriptTab()
-        tabLabel.innerText = "Typescript Tab"
-        tabPane.innerHTML = "<h1>Typescript Tab</h1>"
+        tabLabel.innerText = "Typescript Tab" // TODO
+        tabPane.innerHTML = "<h1>Typescript Tab</h1>" // TODO
     }
 
-    // initialization
+    // Call the function you need to run initialize / run your script here
     addScriptTab()
     setKeyboardShortcuts()
     addLayer()
