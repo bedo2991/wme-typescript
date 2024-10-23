@@ -1,7 +1,7 @@
 import { WmeSDK } from "wme-sdk-typings";
 
 
-// the sdk init function will be called after the SDK is initialized
+// the sdk initScript function will be called after the SDK is initialized
 window.SDK_INITIALIZED.then(initScript);
 
 function initScript() {
@@ -66,9 +66,14 @@ function initScript() {
         tabPane.innerHTML = "<h1>Typescript Tab</h1>" // TODO
     }
 
-    // Call the function you need to run initialize / run your script here
-    addScriptTab()
-    setKeyboardShortcuts()
-    addLayer()
-    addEventListeners()
+    function init(): void {
+        // Call the functions you need to run initialize / run your script here
+        addScriptTab()
+        setKeyboardShortcuts()
+        addLayer()
+        addEventListeners()
+        alert("Your script is running! - TODO remove this line :)")
+    }
+
+    init()
 }
