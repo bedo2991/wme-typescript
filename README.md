@@ -34,3 +34,7 @@ This project will help you to bootstrap a typescript version of your next WME Sc
   - concat: concatenates your `header.js` and your `.out/main.user.js` file and places to the `releases` folder
   - build: compile + concat 
   - **release**: replaces the version number inside the header.js file with the one present in the package.json file and runs build
+
+### Switching from production to beta typings
+- remove the types that are currently installed: `npm uninstall wme-sdk-typings`
+- Install the types you want as stated in the [documentation](https://web-assets.waze.com/wme_sdk_docs/production/latest/index.html#md:typescript-type-definitions).

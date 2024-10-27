@@ -5,7 +5,7 @@
     "@rollup/plugin-typescript": "^12.1.0",
     "tslib": "^2.7.0",
     "typescript": "^5.6.3",
-    "wme-sdk-typings": "https://web-assets.waze.com/wme_sdk_docs/beta/latest/wme-sdk-typings.tgz"
+    "wme-sdk-typings": "https://web-assets.waze.com/wme_sdk_docs/production/latest/wme-sdk-typings.tgz"
   },
   "scripts": {
     "compile": "rollup -c",
