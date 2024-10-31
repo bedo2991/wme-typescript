@@ -5,6 +5,7 @@ This project will help you to bootstrap a typescript version of your next WME Sc
 ## Required only once
 - Allow local file access for the Tampermonkey extension, as explained [here](https://www.tampermonkey.net/faq.php?locale=en#Q204).
 - Install [npm](https://docs.npmjs.com/cli)
+- Install [rollup](https://rollupjs.org) globally: `npm install --global rollup` - This tool will bundle all your files in a single js file that can be used in tampermonkey.
 - (Opt. but recommended) install git if you want to have file versioning
 
 
