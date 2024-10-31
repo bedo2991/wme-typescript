@@ -14,7 +14,7 @@
 // @exclude     https://beta.waze.com/user/editor*
 // @grant       none
 
-// @require       file:///C:/Users/[USERNAME]/Documents/MyDir/.out/main.js
+// @require       file:///C:/Users/[USERNAME]/Documents/MyDir/.out/main.user.js
 // ==/UserScript==
 
 // make sure that inside Tampermonkey's extension settings (on the browser, not from TM) and allow "Local file access", as shown here: https://www.tampermonkey.net/faq.php?locale=en#Q204
