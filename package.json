@@ -15,6 +15,7 @@
     "release": "cross-env replace-in-files --regex='\\d+\\.\\d+\\.\\d+' --replacement=%npm_package_version% header.js && npm run build"
   },
   "dependencies": {
+    "@types/tampermonkey": "^5.0.3",
     "concat": "^1.0.3",
     "cross-env": "^7.0.3",
     "replace-in-files-cli": "^3.0.0"
