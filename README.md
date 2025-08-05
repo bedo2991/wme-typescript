@@ -1,43 +1,155 @@
-# WME SDK Typescript example
+# WME SDK TypeScript Example
 
-This project will help you to bootstrap a typescript version of your next WME Script using the WME-SDK.
+This project helps you **bootstrap a TypeScript-based WME script** using the WME SDK.
 
-## Required only once
-- Allow local file access for the Tampermonkey extension, as explained [here](https://www.tampermonkey.net/faq.php?locale=en#Q204).
-- Install [npm](https://docs.npmjs.com/cli)
-- Install [rollup](https://rollupjs.org) globally: `npm install --global rollup` - This tool will bundle all your files in a single js file that can be used in tampermonkey.
-- (Opt. but recommended) install git if you want to have file versioning
+It provides a clean project setup with build scripts, type checking, and release automation — so you can focus on writing your script!
 
+---
+
+## Setup options
+
+You can use this project in two ways:
+
+- 🟡 **Option 1: using DevContainers (recommended)** — no need to install anything globally
+- 🟡 **Option 2: manual local setup** — install Node.js and Rollup yourself
+
+**Important:** You **MUST** enable "Allow access to file URLs" for Tampermonkey, as explained [here](https://www.tampermonkey.net/faq.php?locale=en#Q204). Without this, Tampermonkey cannot load your local files during development.
+
+---
+
+## Option 1: Using DevContainers (recommended)
+
+If you are using [Visual Studio Code](https://code.visualstudio.com/) and the [DevContainers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers):
+
+1. Open this folder in VS Code
+2. When prompted, **reopen in Dev Container** (or run: `Dev Containers: Reopen in Container`)
+3. The container will automatically install all dependencies (`npm install`)
+4. You can now run:
+
+```bash
+npm run watch
+```
+
+No need to install Node.js, npm or Rollup globally — everything is handled inside the container.
+
+---
+
+## Option 2: Manual local setup
+
+If you prefer to run the project directly on your machine:
+
+### Required once
+
+* Install [npm](https://docs.npmjs.com/cli) and [Node.js](https://nodejs.org)
+* Allow local file access for the Tampermonkey extension, as explained [here](https://www.tampermonkey.net/faq.php?locale=en#Q204)
+* Install [Rollup](https://rollupjs.org) globally:
+
+```bash
+npm install --global rollup
+```
+
+(This tool bundles your script for use in Tampermonkey.)
+
+* (Optional) Install Git to manage file versions
+
+---
 
 ## Getting started
-- Download this repository (as a zip archive) and extract it in a folder of your choice
-- If you have git, now is a good time to initialize your repository by running `git init`
-- Update the details in `header.js` and `header-dev.js` (author, script name...)
-- Create a new script in Tampermonkey, and paste the content of the `header-dev.js` as explained in that file
-- Initialize npm by running `npm install`, this will download and install all packages listed in `package.json`. You can update them by running `npm update`, if needed
-- - Update your script ID and Script name inside `main.user.ts`
+
+1. Download this repository (as a zip) or clone it via git:
+
+```bash
+git clone https://github.com/bedo2991/wme-typescript.git
+```
+
+2. Initialize your own git repo if needed:
+
+```bash
+git init
+```
+
+3. Update the details in:
+
+* `header.js` and `header-dev.js` → update author, script name, etc.
+* `main.user.ts` → set your script ID and name
+
+4. Install dependencies:
+
+```bash
+npm install
+```
+
+---
 
 ## Coding
-- Using an IDE (e.g. [Visual Studio Code](https://code.visualstudio.com/) ), it should be possible to inspect the data type of your variables and get warning or error when using incompatible types or not checking for unwanted states (e.g. using directly the return value of a function that may return *null*)
-- The `.ts` file containing your script (`main.user.ts`) needs to be translated to javascript in order to be used by Tampermonkey.
-- Warning: the content of the `.out` folder is generated, you should **never** edit anything in here.
-- Use `npm run watch` while developing to convert ts to js and `npm run release` when you want to publish a release.
+
+* Open the project in an IDE (e.g. [VS Code](https://code.visualstudio.com/))
+* You will get type checking and autocomplete thanks to the WME SDK typings.
+* The `.ts` file containing your script (`main.user.ts`) needs to be translated to javascript in order to be used by Tampermonkey.
+* ⚠️ **Warning**: the content of the .out folder is generated, you should never edit anything in here.
+* During development, run:
+
+```bash
+npm run watch
+```
+
+This will continuously compile `.ts` to `.js`.
+
+When ready to release:
+
+```bash
+npm run release
+```
+
+---
 
 ## Prepare for a release
-- Only change the version number inside `package.json`
-- Run `npm run release`, if everything goes well, you will get a file with the version in its name inside the `releases` folder.
 
+1. Update the version number in `package.json`
+2. Run:
 
-### Advanced explanation
-- FYI, inside `package.json` you can see all the available scripts you can run while developing.
-  - compile: compiles your script to javascript **once**, it is unlikely that you need to call this directly.
-  - **watch**: use it when you start developing, it will automatically run again every time you change something in your code.
-  - concat: concatenates your `header.js` and your `.out/main.user.js` file and places to the `releases` folder
-  - build: compile + concat 
-  - **release**: replaces the version number inside the header.js file with the one present in the package.json file and runs build
+```bash
+npm run release
+```
 
-### Switching between production and beta types
-- Remove the types that are currently installed by running: `npm uninstall wme-sdk-typings`
-- Install the types you want as stated in the [documentation](https://web-assets.waze.com/wme_sdk_docs/production/latest/index.html#md:typescript-type-definitions). 
-  - **Production**: `npm install --save-dev https://web-assets.waze.com/wme_sdk_docs/production/latest/wme-sdk-typings.tgz`
-  - **Beta**: `npm install --save-dev https://web-assets.waze.com/wme_sdk_docs/beta/latest/wme-sdk-typings.tgz`
+A file will be created in the `releases/` folder with the version in its name.
+
+---
+
+## Scripts explained
+
+You can see all available scripts in `package.json`:
+
+* `compile`: compiles your script once — usually not needed manually
+* `watch`: continuously compiles when code changes — use this when developing
+* `concat`: combines your `header.js` with compiled `.out/main.user.js`
+* `build`: compile + concat
+* `release`: updates version in `header.js` and builds release file
+
+---
+
+## Switching between production and beta typings
+
+1. Uninstall current typings:
+
+```bash
+npm uninstall wme-sdk-typings
+```
+
+2. Install desired version:
+
+**Production:**
+
+```bash
+npm install --save-dev https://web-assets.waze.com/wme_sdk_docs/production/latest/wme-sdk-typings.tgz
+```
+
+**Beta:**
+
+```bash
+npm install --save-dev https://web-assets.waze.com/wme_sdk_docs/beta/latest/wme-sdk-typings.tgz
+```
+
+Full WME SDK typings documentation [here](https://web-assets.waze.com/wme_sdk_docs/production/latest/index.html#md:typescript-type-definitions).
+
+---
